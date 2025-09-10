@@ -20,7 +20,7 @@ app.get("/api/health", (_req, res) => {
 app.post("/api/shorten", (req, res) => {
     const parse = shortenSchema.safeParse(req.body);
     if (!parse.success) {
-        return res.status(400).json({ error: "payload inválido", details: parse.error.issues });
+        return res.status(400).json({ error: "Dados inválidos", details: parse.error.issues });
     }
 
     const { url, alias } = parse.data;
