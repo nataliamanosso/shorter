@@ -1,40 +1,174 @@
-:root{
-    --bg:#0f1724;
-    --card:#0b1220;
-    --accent:#3b82f6;
-    --text:#e6eef8;
+:root {
+    --bg: #131313;
+    --bg-secondary: #FFFFFF05;
+    --card: #1e1b4b;
+    --accent: #8b5cf6;
+    --text: #e6eef8;
+    --border: #FFFFFF0F;
 }
-body{
-    margin:0;
-    font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    background:linear-gradient(180deg,#071127 0%, #081a2a 100%);
-    color:var(--text);
-    min-height:100vh;
-    padding:24px;
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, Segoe UI, Roboto, "Helvetica Neue", Arial;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow: hidden;
 }
-.app{ max-width:900px; margin:0 auto;}
-header h1{ margin:0 0 6px 0;}
-.form{ display:flex; gap:8px; margin:16px 0;}
-.form input{
-    flex:1;
-    padding:8px 12px;
-    border-radius:8px;
-    border:1px solid rgba(255,255,255,0.06);
-    background:rgba(255,255,255,0.02);
-    color:var(--text);
+
+.app {
+    min-height: 100vh;
 }
-.form button{
-    padding:8px 14px;
-    border-radius:8px;
-    background:var(--accent);
-    border:none;
-    color:white;
-    cursor:pointer;
+
+.app-hero {
+    height: 220px;
+    width: 100vw;
+    background: linear-gradient(150deg, #6d28d9 0%, #a78bfa 100%)
 }
-.url-list{ list-style:none; padding:0; margin:16px 0; display:grid; gap:10px;}
-.url-card{ background:rgba(255,255,255,0.02); padding:12px; border-radius:8px; display:flex; align-items:center; gap:10px;}
-.url-card .orig{ flex:1; font-size:0.9rem; opacity:0.9; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
-.url-card .short a{ color:var(--accent); text-decoration:none;}
-.url-card .actions button{ background:transparent; border:1px solid rgba(255,255,255,0.06); padding:6px 8px; border-radius:6px; color:var(--text); cursor:pointer;}
-.empty{ opacity:0.7;}
-.error{ color:#ff7b7b; margin-top:8px;}
+
+.app-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 3rem;
+}
+
+header h1 {
+    margin: 0 0 6px 0;
+    font-size: 2.5rem;
+}
+
+header h2 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
+.app-header {
+    margin-bottom: 40px;
+}
+
+.form {
+    display: flex;
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.form input {
+    flex: 1;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+    color: var(--text);
+}
+
+.form button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: var(--accent);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.url-history-container {
+    margin-top: 2rem;
+}
+
+.url-history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.url-history-header button {
+    background: #FFFFFF0F;
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: var(--text);
+    cursor: pointer;
+}
+
+.url-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+    display: grid;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 250px;
+}
+
+.url-card {
+    background: var(--bg-secondary);
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.url-card .orig {
+    flex: 1;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.url-card .short a {
+    color: var(--accent);
+    text-decoration: none;
+
+    &:hover {
+        color: #a78bfa;
+    }
+}
+
+.url-card .actions {
+    display: flex;
+    gap: 5px;
+}
+
+.muted-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: var(--text);
+    cursor: pointer;
+
+    &:hover {
+        background: var(--bg-secondary);
+    }
+}
+
+.empty {
+    opacity: 0.7;
+}
+
+.error {
+    color: #ff7b7b;
+    margin-top: 8px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3b3b3b;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #606060;
+    transition: 0.3s;
+}

@@ -13,3 +13,14 @@ export function saveUrlLocal(list) {
         localStorage.setItem(KEY, JSON.stringify(list));
     } catch {}
 }
+
+export function removeUrlLocal(id) {
+    const list = getSavedUrls();
+    const filtered = list.filter((u) => u.id !== id);
+    saveUrlLocal(filtered);
+    return filtered;
+}
+
+export function clearUrlsLocal() {
+    saveUrlLocal([]);
+}
