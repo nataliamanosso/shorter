@@ -23,10 +23,14 @@ jobs:
           cache-dependency-path: ./backend/package-lock.json
 
       - run: npm ci
-      - run: npm run build --if-present
+
+      - name: Simulate backend build
+        run: |
+          mkdir -p dist
+          cp -r src/* dist/
 
       - name: List backend build files
-        run: ls -R .
+        run: ls -R dist
 
       - name: Upload backend artifact
         uses: actions/upload-artifact@v4
@@ -54,7 +58,7 @@ jobs:
       - run: npm run build --if-present
 
       - name: List frontend build files
-        run: ls -R .
+        run: ls -R dist
 
       - name: Upload frontend artifact
         uses: actions/upload-artifact@v4
