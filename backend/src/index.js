@@ -1,5 +1,7 @@
 import "dotenv/config";
 import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 import cors from "cors";
 import { nanoid } from "nanoid";
 import { shortenSchema } from "./validators.js";
@@ -55,6 +57,15 @@ app.get("/:id", (req, res) => {
     if (!entry) return res.status(404).send("URL não encontrada");
     incrementClicks(req.params.id);
     res.redirect(entry.url);
+});
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "../public")));
+
+app.get(/^\/(?!api).*/, (_req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 app.listen(PORT, () => {
