@@ -1,4 +1,4 @@
-name: CD - Delivery
+name: CD - Delivery and Deploy
 
 on:
   push:
@@ -54,3 +54,22 @@ jobs:
         with:
           name: frontend-build
           path: ./frontend/dist
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [backend, frontend] # só roda depois que os builds terminarem
+    steps:
+      - name: Download backend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: backend-build
+          path: ./deploy/backend
+
+      - name: Download frontend artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-build
+          path: ./deploy/frontend
+
+      - name: Show files downloaded
+        run: ls -R ./deploy
