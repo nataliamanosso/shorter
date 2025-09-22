@@ -54,3 +54,12 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
 #     - run: npm test --if-present
+  discord-integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Discord Webhook
+        uses: johnnyhuy/actions-discord-git-webhook@main
+        with:
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
