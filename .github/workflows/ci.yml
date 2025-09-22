@@ -29,13 +29,13 @@ jobs:
 
       - run: npm ci
       - run: npm run build --if-present
-#    - run: npm test --if-present
+      - run: npm test --if-present
 
   frontend:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [ 18.x, 20.x, 22.x ]
 
     defaults:
       run:
@@ -53,7 +53,17 @@ jobs:
 
       - run: npm ci
       - run: npm run build --if-present
-#     - run: npm test --if-present
+
+      #Run backend to integration tests
+      - name: Start backend
+        run: |
+          cd ../backend
+          npm ci
+          npm start &
+          sleep 5
+
+      - name: Run frontend tests
+        run: npm test --if-present
 
   discord-integration:
     runs-on: ubuntu-latest
